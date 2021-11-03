@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+.out {
+position: flex;
+}
+.out .in {
+position: absolute;
+}
+</style>
+<body>
+<div class="out">
+	<div class="in">
+		<div style="background-color: #f0f0f0; height: 100px; width: 800px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;">
+			<h3 >문의(Q&A)</h3>
+		</div>
+		<form action="boardEnrol.jsp" method="post">
+			<div style="height: 50px; line-height: 50px;">
+				<label for="titleInput" style="margin: 0px 60px 0px 60px;">제목</label><input type="text" name="title" id="titleInput" style="width: 575px;">
+			</div>
+			<hr>
+			<div style="height: 200px; line-height: 100px; display:table-cell;">
+				<label for="contentInput" style="margin: 0px 60px 0px 60px;">내용</label><textarea style="resize:none; vertical-align: top;" rows="13" cols="80"  name="content"  id="contentInput"></textarea>
+			</div>
+			<hr>
+			<div style="height: 80px;">
+				<label style="margin: 0px 50px 0px 60px;">이미지</label><br>
+				<input type="file" name="chooseFile" accept="image/*" onchange="loadFilSe(this)" style="margin:0px 50px;">
+			</div>
+			<hr>
+			<div style="width:800px; text-align:center;">
+				<input type="submit" value="등록" style="display:inline;">&nbsp;&nbsp;<form action="boardBack.jsp"><input type="submit" value="취소"></form>
+			</div>
+		</form>
+	</div>
+<div>
+</body>
+</html>
