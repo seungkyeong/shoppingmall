@@ -32,7 +32,7 @@ transform:translate(-50%, -50%);
 <div class="out">
 	<div class="in">
 		<div style="background-color: #f0f0f0; height: 100px; width: 800px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;">
-			<h3 >문의(Q&A)</h3>
+			<h3 >문의(Q/A)</h3>
 		</div>
 		<form action="boardReceive.jsp" method="post">
 		<input type="hidden" name="board_id" value="${sessionScope.sessionID }">
@@ -50,10 +50,11 @@ transform:translate(-50%, -50%);
 			</div>
 			<hr>
 			<div style="width:800px; text-align:center;">
-				<input type="submit" value="등록" style="display:inline;">&nbsp;&nbsp;<form action="boardBack.jsp"><input type="submit" value="취소"></form>
+				<input type="submit" value="등록" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'" >취소</button>
 			</div>
 		</form>
 	</div>
+</div>
 <div>
 <%
 	//로그인 안한 사람일 경우 
@@ -64,5 +65,6 @@ transform:translate(-50%, -50%);
 <%
 	} 
 %>
+</div>
 </body>
 </html>

@@ -9,11 +9,12 @@
 %>
 
 <!-- 한명의 회원정보를 담는 user클래스를 자바 빈즈로 사용, scope:페이지 현재의 페이지에서만 사용-->
-<jsp:userBean id="bbs" class="ShoppintMall.bbs.Bbs" scope="page" />
-<% Bbs bbs = new Bbs(); %>
+
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
+<!-- //Bbs bbs = new Bbs(); -->
 <jsp:setProperty name = "bbs" property="bbsTitle" /><!-- bbs.setBbsTitle(requrst) -->
 <jsp:setProperty name = "bbs" property="bbsContent" />
-<jsp:setProperty name = "bbs" property="imageFile" />
+<jsp:setProperty name = "bbs" property="bbsImageFile" />
 
 <!--< % System.out.println(bbs); %> -->
 <!DOCTYPE html>
