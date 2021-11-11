@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import="product.Product" %>    <!-- DAO 없는건 DTO임. -->
 <%@ page import="product.ProductDAO" %>
-<jsp:useBean id="productmanager" class="product.ProductManager"/>
+<jsp:useBean id="productdao" class="product.ProductDAO"/>
 <% request.setCharacterEncoding("utf-8"); %>
 
 <% 
 	String productID = request.getParameter("productID"); //상품 이미지 클릭시 productID가 전달됨. 
-	Product product = productmanager.getProductID(productID); 
+	Product product = productdao.getProductID(productID); 
 %>
 
 <!DOCTYPE html>
