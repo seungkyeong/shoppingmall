@@ -1,3 +1,4 @@
+//문의 게시판 게시글 DTO
 package bbs;
 
 public class Bbs {

@@ -1,3 +1,4 @@
+//문의 게시판 DAO
 package bbs;
 
 import java.sql.Connection;
