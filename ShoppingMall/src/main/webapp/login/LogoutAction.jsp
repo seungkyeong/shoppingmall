@@ -9,7 +9,7 @@
 <body>
 <%
 session.removeAttribute("sessionid");
-response.sendRedirect("../main/top.jsp");
+response.sendRedirect("${pageContext.request.contextPath}/main/main.jsp");
 %>
 </body>
 </html>

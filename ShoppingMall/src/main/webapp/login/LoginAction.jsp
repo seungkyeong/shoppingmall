@@ -57,7 +57,7 @@ else if(result ==-2) {
 String msg = "";
 if(check == 1) {
 	session.setAttribute("sessionID",id); //로그인성공
-	msg = "Logout.jsp";
+	msg = "../main/loginmain.jsp";
 }
 else if(check ==0) {
 	msg = "LoginForm.jsp?msg=0";

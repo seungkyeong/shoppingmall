@@ -9,6 +9,9 @@
 <link href="../design.css" rel="stylesheet" type="text/css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
+.top{
+	position:fixed;
+}
 #menu {
 	border-top:1px solid black;
 	border-bottom:1px solid black;
@@ -80,6 +83,11 @@
 	padding:0;
 }
 
+#nav ul li:hover a{
+	background:#eee;
+	font-weight:bold;
+}
+
 /*제일윗부분*/
 .wrapper{
 	margin : 0 auto;
@@ -136,9 +144,9 @@ padding-top:7px;
 <div class="top">
 	<div class="wrapper">
 	<ul class = "top-menu">
-		<li class="test"><a href="../join/JoinForm.jsp"><p>마이페이지</p></a></li>	
-		<li class="test"><a href="LogoutAction.jsp"><p>로그아웃</p></a></li>
-		<li class="test"><p><b><%=session.getAttribute("sessionID") %>님 환영합니다!</b></p></li>
+		<li class="test"><a href="${pageContext.request.contextPath}/join/JoinForm.jsp"><p>마이페이지</p></a></li>	
+		<li class="test"><a href="/login/LogoutAction.jsp"><p>로그아웃</p></a></li>
+		<li class="test"><p><b><%=session.getAttribute("sessionID") %>님 환영합니다!</b></p></li><br>
 	</ul>
 	</div>
 </div>
@@ -149,28 +157,28 @@ padding-top:7px;
 </div> -->
 	<header>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<h2 onclick="location.href=''">#화음 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<h2 onclick="location.href='${pageContext.request.contextPath}/main/loginmain.jsp'">#화음 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="text" size="40" value="" placeholder="serach">
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<span onclick="location.href='../login/IdSearch.jsp'"><i class="fas fa-shopping-cart"></i></span>
+	<span onclick="location.href='${pageContext.request.contextPath}/login/IdSearch.jsp'"><i class="fas fa-shopping-cart"></i></span>
 	&nbsp;&nbsp;
-	<span onclick="location.href='../login/IdSearch.jsp'"><i class="fas fa-user"></i></span>
+	<span onclick="location.href='${pageContext.request.contextPath}/login/IdSearch.jsp'"><i class="fas fa-user"></i></span>
 	</header>
-
+	<br>
 
 	<ul id="nav">
-	<!-- <li><a href="#">카테고리+</a>
+	<li><a href="#">카테고리+</a>
 		<ul>
 			<li><a href="#">기초 스킨케어</a></li>
 			<li><a href="#">메이크업</a></li>
 			<li><a href="#">바디케어</a></li>
 			<li><a href="#">미용소품</a></li>
 		</ul>
-	</li> -->
+	</li>
 	<li><a href="#">랭킹</a></li>
 	<li><a href="#">신상</a></li>
 	<li><a href="#">이벤트</a></li>
-	<li><a href="../board.jsp">게시판</a></li>
+	<li><a href="${pageContext.request.contextPath}/board/QnAboard.jsp">게시판</a></li>
 	</ul>
 </div>
 </center>
