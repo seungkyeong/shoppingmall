@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="../design.css" rel="stylesheet" type="text/css">
+<style>
+#NonMember {
+	padding-left: 695px;
+}
+</style>
 </head>
 <script type="text/javascript">
 	function nullCheck() {
@@ -22,9 +27,10 @@
 		document.nonmemform.submit();
 	}
 </script>
-<body style="background-color:#F5DA81">
+<body style="background-color:white">
+<%@ include file="../main/top.jsp" %>
 <form name="nonmemform" action="LoginForm.jsp" method="post">
-	<table>
+	<table id="NonMember">
 		<!-- <caption>로그인</caption> -->
 		<tr><td align="center"><h2>비회원 주문조회</h2></td></tr>
 		<tr><td>

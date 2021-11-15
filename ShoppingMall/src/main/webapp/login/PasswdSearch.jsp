@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="../design.css" rel="stylesheet" type="text/css">
+<style>
+#passwordSearch {
+	padding-left: 695px;
+}
+</style>
 </head>
 <script type="text/javascript">
 	function nullCheck() {
@@ -28,8 +33,9 @@
 	}
 </script>
 <body>
+<%@ include file="../main/top.jsp" %>
 <form name="passwdSearch" action="LoginForm.jsp" method="post">
-	<table>
+	<table id="passwordSearch">
 		<!-- <caption>로그인</caption> -->
 		<tr><td align="center"><h2>비밀번호 찾기</h2></td></tr>
 		<tr><td>

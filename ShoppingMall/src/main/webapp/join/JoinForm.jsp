@@ -5,7 +5,7 @@
 <head>
     <title>회원가입 화면</title>
     <style>
-    div{padding-left: 800px;}
+    #wrap{padding-left: 700px;}
     </style>    
 
     <link href='../../css/join_style.css' rel='stylesheet' style='text/css'/>
@@ -34,6 +34,7 @@
     </script>
 </head>
 <body>
+<%@ include file="../main/top.jsp" %>
     <div id="wrap">
         <br>
         <b><font size="6" color="black">회원가입</font></b>

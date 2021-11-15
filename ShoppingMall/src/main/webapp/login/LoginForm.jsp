@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>#화음-로그인</title>
 <link href="../design.css" rel="stylesheet" type="text/css">
 <style>
 #wrap {
-	padding-left: 250px;
+	padding-left: 220px;
 }
 </style>
 </head>
@@ -62,7 +62,7 @@ String id=(String)session.getAttribute("idok");
 		<span onclick="location.href='../join/JoinForm.jsp'">회원가입</span></td></tr>
 		<tr><td><hr></td></tr>
 		<tr><td>
-		<button type="button" style="size: 40" class="nonbtn" onClick="location.href='Non_Member.jsp'">비회원 주문조회</button></td></tr>
+		<button type="button" style="size: 40" class="nonbtn" onClick="location.href='NonMember.jsp'">비회원 주문조회</button></td></tr>
 	</table>
 </div>
 </form>
