@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문의 게시판</title>
 <head>
 <style>
 .out {
@@ -21,6 +21,7 @@ top: 50%;
 left:50%
 transform:translate(-50%, -50%);
 }
+
 </style>
 <body>
 <%

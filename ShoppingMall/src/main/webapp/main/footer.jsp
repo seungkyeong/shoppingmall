@@ -9,6 +9,10 @@
  #footer { background:#eee; padding:20px; }
  #footer { margin-top:100px; border-radius:50px 50px 0 0; }
 #footer div#footer_box { padding:0 20px; }
+#footer { width:100%;
+height:15%;
+clear:both;
+ }
 </style>
 </head>
 <body>

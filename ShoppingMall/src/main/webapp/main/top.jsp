@@ -146,7 +146,7 @@ padding-top:7px;
 	<span style="color:gray;" onclick="location.href='../login/LoginForm.jsp'">로그인 |</span>
 	<span style="color:gray;" onclick="location.href='../login/IdSearch.jsp'"> 회원가입</span>
 </div> -->
-	<header style="margin-top:6px;">
+	<header style="padding-top:6px;">
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<h2 onclick="location.href='../main/main.jsp'">#화음 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="text" size="40" value="" placeholder="serach">

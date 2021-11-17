@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
  
-import javax.naming.NamingException;
- 
 import util.DatabaseUtil;
  
  

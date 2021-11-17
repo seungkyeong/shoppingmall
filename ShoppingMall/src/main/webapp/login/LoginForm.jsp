@@ -8,7 +8,7 @@
 <link href="../design.css" rel="stylesheet" type="text/css">
 <style>
 #wrap {
-	padding-left: 220px;
+	padding-left: 700px;
 }
 </style>
 </head>

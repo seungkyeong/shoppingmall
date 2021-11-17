@@ -119,9 +119,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="mail1" size="20" maxlength="30"> 
+                        <input type="text" name="mail1" size="15" maxlength="30"> 
                          <span>@</span>
-                        <input name="mail2" list="domains" placeholder="도메인입력/선택">
+                        <input name="mail2" list="domains" size="15" placeholder="도메인입력/선택">
                      <datalist id="domains">
                          <option value="naver.com">
                          <option value="daum.net">

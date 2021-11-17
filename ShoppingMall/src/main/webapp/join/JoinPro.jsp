@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>회원가입 처리내용</title>
 <style>
-div{padding-left: 800px;}
+#wrap{padding-left: 700px;}
 </style>
 </head>
 <body>
@@ -24,6 +24,7 @@ div{padding-left: 800px;}
 	dao.insertMember(memberBean);
 %>
  
+<%@ include file="../main/top.jsp" %> 
 <div id="wrap">
 <br><b><font size="5" color="gray">회원가입 정보를 확인하세요.</font></b>
 <br><br>

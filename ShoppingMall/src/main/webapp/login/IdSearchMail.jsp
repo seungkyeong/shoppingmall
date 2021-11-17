@@ -4,7 +4,7 @@
 <html>
 <style>
 #mail {
-	padding-left: 695px;
+	padding-left: 50px;
 }
 </style>
 <head>

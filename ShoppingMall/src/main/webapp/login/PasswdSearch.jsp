@@ -8,7 +8,7 @@
 <link href="../design.css" rel="stylesheet" type="text/css">
 <style>
 #passwordSearch {
-	padding-left: 695px;
+	padding-left: 50px;
 }
 </style>
 </head>
