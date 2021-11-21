@@ -39,7 +39,7 @@ transform:translate(-50%, -50%);
 			<h3 >문의(Q/A)</h3>
 		</div>
 		<form action="QnAboardAction.jsp" method="post">
-		<input type="hidden" name="board_id" value="${sessionScope.sessionID }">
+		<input type="hidden" name="userID" value="${sessionScope.sessionID }">
 			<div style="height: 50px; line-height: 50px;">
 				<label for="titleInput" style="margin: 0px 60px 0px 60px;">제목</label><input type="text" name="bbsTitle" id="titleInput" style="width: 575px;">
 			</div>
@@ -73,7 +73,6 @@ transform:translate(-50%, -50%);
 	//} 
 %>
 </div>
-
 
 <%@ include file = "../main/footer.jsp" %>
 </body>
