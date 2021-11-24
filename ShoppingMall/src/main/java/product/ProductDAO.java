@@ -11,6 +11,9 @@ import java.util.ArrayList;
 //import javax.naming.Context;
 //import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import util.DatabaseUtil;
+
 import java.sql.DriverManager;
 
 public class ProductDAO {
@@ -190,10 +193,12 @@ public class ProductDAO {
 	
 	//상품 등록
 	public int insertProduct(Product p) throws SQLException {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
 		int re = -1;
 		try {
 			String sql = "insert into product(productID, productName, productStock, productPrice, fileName, fileRealName, productInfo) values(?, ?, ?, ?, ?, ?, ?)";
-			conn = DatabaseUtil.getConnection();
+			conn =DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 		
 			pstmt.setString(1, p.getProductID());
