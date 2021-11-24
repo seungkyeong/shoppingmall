@@ -33,8 +33,8 @@
 	
 	String productID = multi.getParameter("productID"); //enctype 때문.
 	String productName = multi.getParameter("productName");
-	int productStock = multi.getParameter("productStock");
-	int productPrice = multi.getParameter("productPrice");
+	int productStock = Integer.parseInt(multi.getParameter("productStock"));
+	int productPrice = Integer.parseInt(multi.getParameter("productPrice"));
 	String productInfo = multi.getParameter("productInfo"); 
 	
 	product.setProductID(productID);
@@ -47,7 +47,7 @@
 	
 	ProductDAO ProductDAO = new ProductDAO();
 	//상품등록
-	int result = ProductDAO.write(product.getProductID(), product.getProductName(), product.getProductStock(), product.getProductPrice(), product.getFileName(), product.getFileRealName(), product.getProductInfo());
+	int result = ProductDAO.insertProduct(product);
 	
 	if(result == -1){ //데이터베이스 오류가 발생한 경우 : -1
 		PrintWriter script = response.getWriter();

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //import javax.naming.Context;
@@ -188,11 +189,11 @@ public class ProductDAO {
 	}
 	
 	//상품 등록
-	public int insertProduct(Product p) {
+	public int insertProduct(Product p) throws SQLException {
 		int re = -1;
 		try {
 			String sql = "insert into product(productID, productName, productStock, productPrice, fileName, fileRealName, productInfo) values(?, ?, ?, ?, ?, ?, ?)";
-			conn = ds.getConnection();
+			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 		
 			pstmt.setString(1, p.getProductID());
@@ -202,10 +203,22 @@ public class ProductDAO {
 			pstmt.setString(5, p.getFileName());
 			pstmt.setString(6, p.getFileRealName());
 			pstmt.setString(7, p.getProductInfo());
-			rs = pstmt.executeQuery();
-			close(conn, pstmt, null);
+			//rs = pstmt.executeQuery();
+			
+			return pstmt.executeUpdate();
+		}catch (SQLException sqle) {
+			throw new RuntimeException(sqle.getMessage());
 		}catch (Exception e) {
 			System.out.println("err : " + e.getMessage());
+		}finally {
+            // Connection, PreparedStatement를 닫는다.
+            try{
+            	//close(conn, pstmt, null);
+            	if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
 		}
 		return re;
 	}
