@@ -6,8 +6,21 @@ public class Product {
 	private int productPrice; //상품 가격
 	private String productInfo; //상품 정보
 	private int productStock; //상품 재고
-	private String productImage; //상품 이미지 경로
+	private String fileName; //상품 이미지 경로
+	private String fileRealName; //서버에서의 실제 상품 경로
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFileRealName() {
+		return fileRealName;
+	}
+	public void setFileRealName(String fileRealName) {
+		this.fileRealName = fileRealName;
+	}
 	public String getProductID() {
 		return productID;
 	}
@@ -38,10 +51,5 @@ public class Product {
 	public void setProductStock(int productStock) {
 		this.productStock = productStock;
 	}
-	public String getProductImage() {
-		return productImage;
-	}
-	public void setProductImage(String productImage) {
-		this.productImage = productImage;
-	}
+	
 }

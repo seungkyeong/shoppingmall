@@ -100,11 +100,11 @@ public class BbsDAO {
 //	}
 	
 	//실제로 글을 작성하는 함수
-	public int write(String bbsTitle, String userID, String bbsContent, String imageFile) throws SQLException {
+	public int write(String bbsTitle, String userID, String bbsContent, String fileName, String fileRealName) throws SQLException {
 		Connection conn = null;
         PreparedStatement pstmt = null;
 		
-		String SQL = "insert into bbs(bbsID, bbsTitle, userID, bbsDate, bbsContent, bbsAvailable, bbsImage) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "insert into bbs(bbsID, bbsTitle, userID, bbsDate, bbsContent, fileName, fileRealName, bbsAvailable) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn =DatabaseUtil.getConnection();
 			
@@ -117,8 +117,10 @@ public class BbsDAO {
 			//pstmt.setString(4, getDatetime());
 			pstmt.setString(4, getDatetime()); //작성일자를 넣음.
 			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1); //글의 유효번호: 1인 경우, 삭제되지 않은 게시물을 의미.
-			pstmt.setString(7, imageFile);
+			pstmt.setString(6, fileName);
+			pstmt.setString(7, fileRealName);
+			pstmt.setInt(8, 1); //글의 유효번호: 1인 경우, 삭제되지 않은 게시물을 의미.
+			
 			
 			//쿼리 실행
 			return pstmt.executeUpdate(); 

@@ -53,7 +53,7 @@ public class ProductDAO {
 	public int updateProduct(Product p) {
 		int re = -1;
 		
-		String sql = "update product set productID=?, productName=?, stock=?, price=?, imageSrc=?, productInfo=?";
+		String sql = "update product set productID=?, productName=?, productStock=?, productPrice=?, fileName=?, fileRealName=?, productInfo=?";
 		
 		try {
 			conn = ds.getConnection();
@@ -62,8 +62,9 @@ public class ProductDAO {
 			pstmt.setString(2, p.getProductName());
 			pstmt.setInt(3, p.getProductStock());
 			pstmt.setInt(4, p.getProductPrice());
-			pstmt.setString(5, p.getProductImage());
-			pstmt.setString(6, p.getProductInfo());
+			pstmt.setString(5, p.getFileName());
+			pstmt.setString(6, p.getFileRealName());
+			pstmt.setString(7, p.getProductInfo());
 			
 			re = pstmt.executeUpdate();
 			close(conn, pstmt, null);
@@ -93,8 +94,8 @@ public class ProductDAO {
 	}
 	
 	//productID 상품 번호 가져오는 함수
-	public int getProductId() {
-		String SQL = "SELECT productId FROM PRODUCT ORDER BY productId DESC";
+	public int getProductID() {
+		String SQL = "SELECT productID FROM PRODUCT ORDER BY productID DESC";
 		try {
 			conn = ds.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -110,36 +111,37 @@ public class ProductDAO {
 	}
 	
 	//상품 상세보기, 상품번호를 이용하여 상품을 가져오는 함수 
-		public Product getProductID(String productID){
-			Product product = null;
-			String sql = "select * from product where productID = ?"; //해당 상품 찾기 
-			try {
-				conn = ds.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, productID);
-				rs = pstmt.executeQuery();
-				if(rs.next()){
-					product = new Product();
-					product.setProductID(rs.getString("productID"));
-					product.setProductName(rs.getString("productName"));
-					product.setProductPrice(rs.getInt("productPrice"));
-					product.setProductInfo(rs.getString("productInfo"));
-					product.setProductStock(rs.getInt("productStock"));
-					product.setProductImage(rs.getString("productImage"));
-				}
-			} catch (Exception e) {
-				System.out.println("getProduct err : ");
-			} finally {
-				try {
-					if(rs!=null)rs.close();
-					if(pstmt!=null)pstmt.close();
-					if(conn!=null)conn.close();
-				} catch (Exception e2) {
-					System.out.println("err : " + e2);
-				}
+	public Product getProductID(String productID){
+		Product product = null;
+		String sql = "select * from product where productID = ?"; //해당 상품 찾기 
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productID);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				product = new Product();
+				product.setProductID(rs.getString("productID"));
+				product.setProductName(rs.getString("productName"));
+				product.setProductStock(rs.getInt("productStock"));
+				product.setProductPrice(rs.getInt("productPrice"));
+				product.setFileName(rs.getString("fileName"));
+				product.setFileRealName(rs.getString("fileRealName"));
+				product.setProductInfo(rs.getString("productInfo"));
 			}
-			return product;
+		} catch (Exception e) {
+			System.out.println("getProduct err : ");
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				System.out.println("err : " + e2);
+			}
 		}
+		return product;
+	}
 	
 	
 //	public ProductManager() {
@@ -164,10 +166,11 @@ public class ProductDAO {
 				Product product = new Product();
 				product.setProductID(rs.getString("productID"));
 				product.setProductName(rs.getString("productName"));
-				product.setProductInfo(rs.getString("productInfo"));
-				product.setProductPrice(rs.getInt("productPrice"));
-				product.setProductImage(rs.getString("productImage"));
 				product.setProductStock(rs.getInt("productStock"));
+				product.setProductPrice(rs.getInt("productPrice"));
+				product.setFileName(rs.getString("fileName"));
+				product.setFileRealName(rs.getString("fileRealName"));
+				product.setProductInfo(rs.getString("productInfo"));
 				list.add(product);
 			}
 		} catch (Exception e) {
@@ -184,10 +187,11 @@ public class ProductDAO {
 		return list; //상품 목록 반환
 	}
 	
+	//상품 등록
 	public int insertProduct(Product p) {
 		int re = -1;
 		try {
-			String sql = "insert into product(productID, productName, stock, price, imageSrc, productInfo) values(?, ?, ?, ?, ?, ?)";
+			String sql = "insert into product(productID, productName, productStock, productPrice, fileName, fileRealName, productInfo) values(?, ?, ?, ?, ?, ?, ?)";
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 		
@@ -195,8 +199,9 @@ public class ProductDAO {
 			pstmt.setString(2, p.getProductName());
 			pstmt.setInt(3, p.getProductStock());
 			pstmt.setInt(4, p.getProductPrice());
-			pstmt.setString(5, p.getProductImage());
-			pstmt.setString(6, p.getProductInfo());
+			pstmt.setString(5, p.getFileName());
+			pstmt.setString(6, p.getFileRealName());
+			pstmt.setString(7, p.getProductInfo());
 			rs = pstmt.executeQuery();
 			close(conn, pstmt, null);
 		}catch (Exception e) {

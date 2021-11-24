@@ -38,7 +38,7 @@ transform:translate(-50%, -50%);
 		<div style="background-color: #f0f0f0; height: 100px; width: 800px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;">
 			<h3 >문의(Q/A)</h3>
 		</div>
-		<form action="QnAboardAction.jsp" method="post">
+		<form action="QnAboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
 		<input type="hidden" name="userID" value="${sessionScope.sessionID }">
 			<div style="height: 50px; line-height: 50px;">
 				<label for="titleInput" style="margin: 0px 60px 0px 60px;">제목</label><input type="text" name="bbsTitle" id="titleInput" style="width: 575px;">

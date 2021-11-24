@@ -8,8 +8,9 @@ public class Bbs {
 	private String userID; //아이디
 	private String bbsDate; //작성 날짜
 	private String bbsContent; //내용
-	private String bbsImageFile;
 	private int bbsAvailable;
+	String fileName;
+	String fileRealName; //실제로 서버에 저장되는 이름
 	
 	public int getBbsID() {
 		return bbsID;
@@ -41,17 +42,36 @@ public class Bbs {
 	public void setBbsContent(String bbsContent) {
 		this.bbsContent = bbsContent;
 	}
-	public String getBbsImageFile() {
-		return bbsImageFile;
-	}
-	public void setBbsImageFile(String bbsImageFile) {
-		this.bbsImageFile = bbsImageFile;
-	}
 	public int getBbsAvailable() {
 		return bbsAvailable;
 	}
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
-	} 
-
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFileRealName() {
+		return fileRealName;
+	}
+	public void setFileRealName(String fileRealName) {
+		this.fileRealName = fileRealName;
+	}
+	
+	//생성자, 초기화
+//	public Bbs(int bbsID, String bbsTitle, String userID, String bbsDate, String bbsContent, int bbsAvailable,
+//			String fileName, String fileRealName) {
+//		super();
+//		this.bbsID = bbsID;
+//		this.bbsTitle = bbsTitle;
+//		this.userID = userID;
+//		this.bbsDate = bbsDate;
+//		this.bbsContent = bbsContent;
+//		this.bbsAvailable = bbsAvailable;
+//		this.fileName = fileName;
+//		this.fileRealName = fileRealName;
+//} 
 }
