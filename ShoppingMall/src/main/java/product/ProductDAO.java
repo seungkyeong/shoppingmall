@@ -101,8 +101,8 @@ public class ProductDAO {
 	public int getProductID() {
 		String SQL = "SELECT productID FROM PRODUCT ORDER BY productID DESC";
 		try {
-			conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			conn =DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1) + 1;
@@ -115,11 +115,13 @@ public class ProductDAO {
 	}
 	
 	//상품 상세보기, 상품번호를 이용하여 상품을 가져오는 함수 
-	public Product getProductID(String productID){
+	public Product getProductID(String productID) throws SQLException {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
 		Product product = null;
 		String sql = "select * from product where productID = ?"; //해당 상품 찾기 
 		try {
-			conn = ds.getConnection();
+			conn =DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productID);
 			rs = pstmt.executeQuery();
@@ -133,14 +135,16 @@ public class ProductDAO {
 				product.setFileRealName(rs.getString("fileRealName"));
 				product.setProductInfo(rs.getString("productInfo"));
 			}
-		} catch (Exception e) {
+		}catch (SQLException sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		}catch (Exception e) {
 			System.out.println("getProduct err : ");
-		} finally {
+		}finally {
 			try {
 				if(rs!=null)rs.close();
 				if(pstmt!=null)pstmt.close();
 				if(conn!=null)conn.close();
-			} catch (Exception e2) {
+			}catch (Exception e2) {
 				System.out.println("err : " + e2);
 			}
 		}
