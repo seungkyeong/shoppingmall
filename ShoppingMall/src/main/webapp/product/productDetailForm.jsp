@@ -20,6 +20,7 @@
 <style>
 strong{
 	font-size: 24px;
+	color: #525252;
 }
 #out{
 	padding-top: 10px;
@@ -42,14 +43,20 @@ a{
 	border-radius: 5px;
 	display: inline-block;
 }
-.blue{
+.btn1{
+	color: #e93554;
 	background-color: white;
-	border: 2px solid #efefef;
+	border: 2px solid #e93554;
 }
-.red{
-	background-color: #efefef ;
-	border-bottom: 5px solid #efefef ;
+.btn2{
+	color: white;
+	background-color: #e93554 ;
+	border-bottom: 5px solid #e93554 ;
 }
+.pink{
+	color:#e93554;
+}
+
 
 </style>
 </head>
@@ -66,30 +73,35 @@ a{
 <form action="productDetailRecieve.jsp" method="post"> <!-- 전달 장바구니 or 즉시구매 -->
 <table id="out">
 	<tr>
-	<td style="width: 300px; height: 380px;"><img src="../productUpload/<%= product.getFileRealName() %>" width="340" height="380" alt="상품 사진입니다."></td>
+	<td style="width: 300px; height: 380px; line-height:0;"><img src="../productUpload/<%= product.getFileRealName() %>" style="paddint:0; margin:0px;" alt="상품 사진입니다."></td>
 	<td>
 		<table id="in" style="margin-left: 20px;">
 			<tr>
 				<td colspan="2"><b><%= product.getProductName() %></b></td>
 			</tr>
+			<tr><td colspan="2"><br></td></tr>
 			<tr>
 				<td><strong>판매가</strong></td><td class="a"><%= product.getProductPrice() %>원</td>
 			</tr>
-			<tr><td><strong>상품설명</strong></td><td class="a"><%= product.getProductInfo() %></td>
+			<tr><td colspan="2"><hr></td></tr>
+			<tr><td><strong>상품설명</strong></td><td class="a"><%= product.getProductInfo() %></td></tr>
+			<tr><td colspan="2"><hr></td></tr>
 			<tr>
 				<td><strong>수량</strong></td>
 				<td><button type ="button" onclick="Count('p',this);">+</button>
         			<input type="text" id='count' onchange='getCount()' name="buyCount" value="0" readonly="readonly" style="text-align:center;"/>
         			<button type="button" onclick="Count('m', this);">-</button>
         		</td>
+        	</tr>
+        	<tr><td colspan="2"><hr></td></tr>
         	<tr>
-        		<td><strong>합계</strong></td><td class="a"><label id="result">0</label>원</td><!-- 총가격-->
+        		<td><strong class="pink">합계</strong></td><td class="a"><label id="result" class="pink">0</label><label class="pink">원</label></td><!-- 총가격-->
         	</tr>
         	<tr>
-        		<td colspan="2"><hr></td>
+        		<td colspan="2"><hr class="pink" color="#f0768b"></td>
         	</tr>
         	<tr>
-        		<td colspan="2" style="text-align:center;"><a class="blue" href="cart.jsp.submit()">장바구니</a><a class="red" href="buynow.jsp.submit()">바로구매</a></td>
+        		<td colspan="2" style="text-align:center;"><a class="btn1" href="cart.jsp.submit()">장바구니</a><a class="btn2" href="buynow.jsp.submit()">바로구매</a></td>
 			</table>
 </table>
 </form>

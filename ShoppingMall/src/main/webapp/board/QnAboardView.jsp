@@ -20,12 +20,15 @@ height:600px;
 margin:0 auto;
 position: relative;
 }
-.in {
+#out {
 width:800px;
-height:360px;
-top: 50%;
-left:50%
-transform:translate(-50%, -50%);
+height:600px;
+margin:0 auto;
+position: relative;
+}
+.title{
+width: 120px; 
+text-align:center;
 }
 </style>
 </head>
@@ -63,38 +66,24 @@ transform:translate(-50%, -50%);
 %>
 
 <div class="out">
-	<div class="in">
-		<div style="background-color: #f0f0f0; height: 100px; width: 800px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;">
-			<h3 >문의(Q/A) 게시글</h3>
-		</div>
-		<form action="QnAboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
-		<input type="hidden" name="userID" value="${sessionScope.sessionID }">
-			<div style="height: 50px; line-height: 50px;">
-				<label style="margin: 0px 60px 0px 60px;">제목</label><label style="width: 575px;"><%= bbs.getBbsTitle() %></label>
-			</div>
-			<hr>
-			<div style="height: 50px; line-height: 50px;">
-				<label style="margin: 0px 60px 0px 60px;">작성자</label><label style="width: 575px;"><%= bbs.getUserID() %></label>
-			</div>
-			<hr>
-			<div style="height: 50px; line-height: 50px;">
-				<label style="margin: 0px 60px 0px 60px;">작성일자</label><label style="width: 575px;"><%= bbs.getBbsDate() %></label>
-			</div>
-			<hr>
-			<div style="display:table-cell;">
-				<label style="margin: 0px 60px 0px 60px;">내용</label><label><%= bbs.getBbsContent() %></label>
-			</div>
-			<hr>
-			<div style="height: 200px;">
-				<label style="margin: 0px 50px 0px 60px;">이미지</label><img src="../QnAUpload/<%= bbs.getFileRealName() %>" alt="이미지">
-			</div>
-			<hr>
-			<div id="twobutton" style="width:800px; text-align:center;">
-				<button type="button" onClick="location.href='QnAboardList.jsp'">목록</button>&nbsp;&nbsp;
-				<input type="submit" value="수정" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'">삭제</button>
-			</div>
-		</form>
-	</div>
+	<form action="QnAboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
+	<input type="hidden" name="userID" value="${sessionScope.sessionID }">
+	<table id="out">
+		<tr><td colspan="2" style="background-color: #f0f0f0; width:800px; height:80px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;"><h3 >문의(Q/A) 게시글</h3></td></tr>
+		<tr><td class="title"><label>제목</label></td><td><label style="width: 575px;"><%= bbs.getBbsTitle() %></label></td></tr>
+		<tr><td colspan="2"><hr></td></tr>
+		<tr><td class="title"><label>작성자</label></td><td><label style="width: 575px;"><%= bbs.getUserID() %></label></td></tr>
+		<tr><td colspan="2"><hr></td></tr>
+		<tr><td class="title"><label>작성일자</label></td><td><label style="width: 575px;"><%= bbs.getBbsDate() %></label></td></tr>
+		<tr><td colspan="2"><hr></td></tr>
+		<tr><td class="title"><label>내용</label></td><td><label><%= bbs.getBbsContent() %></label></td></tr>
+		<tr><td colspan="2"><hr></td></tr>
+		<tr><td class="title"><label>이미지</label></td><td><img src="../QnAUpload/<%= bbs.getFileRealName() %>" alt="이미지" style="width:200px; height:200px;"></td></tr>
+		<tr><td colspan="2"><hr></td></tr>
+		<tr><td colspan="2" class="title"><button type="button" onClick="location.href='QnAboardList.jsp'">목록</button>&nbsp;&nbsp;
+				<input type="submit" value="수정" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'">삭제</button></td></tr>		
+	</table>
+	</form>
 </div>
 
 <!-- 하단바 include -->
