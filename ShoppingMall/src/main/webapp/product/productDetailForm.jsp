@@ -7,8 +7,8 @@
 
 <% 
 	//String productID = request.getParameter("productID"); //상품 이미지 클릭시 productID가 전달됨.
-	//Product product = productdao.getProductID(productID);
-	Product product = productdao.getProductID("22"); //임시적으로 처리했어요.
+	//Product product = productdao.getProduct(productID);
+	Product product = productdao.getProduct("22"); //임시적으로 처리했어요.
 %>
 
 <!DOCTYPE html>

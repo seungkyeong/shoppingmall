@@ -115,7 +115,7 @@ public class ProductDAO {
 	}
 	
 	//상품 상세보기, 상품번호를 이용하여 상품을 가져오는 함수 
-	public Product getProductID(String productID) throws SQLException {
+	public Product getProduct(String productID) throws SQLException {
 		Connection conn = null;
         PreparedStatement pstmt = null;
 		Product product = null;
