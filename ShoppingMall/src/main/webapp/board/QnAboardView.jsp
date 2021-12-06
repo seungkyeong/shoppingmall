@@ -41,13 +41,13 @@ text-align:center;
 <%
 	//세션 체크 -> 수정, 삭제를 위헤
 	String userID = null;
-	if(session.getAttribute("userID") != null){
-		userID = (String)session.getAttribute("userID");
+	if(session.getAttribute("sessionID") != null){
+		userID = (String)session.getAttribute("sessionID");
 	}
 	
 	//bbsID를 초기화시킨 후 bbsID라는 데이터가 넘어온 것이 있다면 캐스팅하여 변수에 담는다.
 	//int bbsID = 0;
-	int bbsID = 10; //임의로 설정 
+	int bbsID = 0; //임의로 설정 
 	if(request.getParameter("bbsID") != null){
 		bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	}
@@ -80,7 +80,7 @@ text-align:center;
 		<tr><td colspan="2"><hr></td></tr>
 		<tr><td class="title"><label>이미지</label></td><td><img src="../QnAUpload/<%= bbs.getFileRealName() %>" alt="이미지" style="width:200px; height:200px;"></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
-		<tr><td colspan="2" class="title"><button type="button" onClick="location.href='QnAboardList.jsp'">목록</button>&nbsp;&nbsp;
+		<tr><td colspan="2" class="title"><button type="button" onClick="location.href='ReviewboardList.jsp'">목록</button>&nbsp;&nbsp;
 				<input type="submit" value="수정" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'">삭제</button></td></tr>		
 	</table>
 	</form>
