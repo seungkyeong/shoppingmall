@@ -73,10 +73,9 @@ public class reviewBbsDAO {
 			Connection conn = null;
 	        PreparedStatement pstmt = null;
 			
-			String SQL = "insert into bbs(bbsID, bbsTitle, userID, bbsDate, bbsContent, fileName, fileRealName, fileName2, fileRealName2, bbsAvailable) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String SQL = "insert into reviewbbs(bbsID, bbsTitle, userID, bbsDate, bbsContent, fileName, fileRealName, fileName2, fileRealName2, bbsAvailable) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			try {
 				conn =DatabaseUtil.getConnection();
-				
 				pstmt = conn.prepareStatement(SQL);
 				
 				//pstmt.setInt(1, getNext());

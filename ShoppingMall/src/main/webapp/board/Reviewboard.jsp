@@ -39,7 +39,7 @@ text-align:center;
 
 <jsp:include page ="../main/top.jsp" flush="false"/>
 <div class="out">
-	<form action="ReviesboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
+	<form action="ReviewboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
 	<input type="hidden" name="userID" value="${sessionScope.sessionID }">
 	<table id="out">
 		<tr><td colspan="2" style="background-color: #f0f0f0; width:800px; height:80px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;"><h3 >리뷰</h3></td></tr>

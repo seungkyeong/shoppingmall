@@ -20,11 +20,12 @@
 	
 	String directory = application.getRealPath("/ReviewUpload/");
 	String encoding="utf-8";
-	int maxSize=5*1024*1024;
+	int maxSize=10*1024*1024;
+	//int maxSize2=1024*1024*1024;
 	
 	//파일 업로드를 직접적으로 담당, 이미지 파일
 	MultipartRequest multi=new MultipartRequest(request,directory,maxSize,encoding,new DefaultFileRenamePolicy());
-	
+	//MultipartRequest multi2 = new MultipartRequest(request,director//y,maxSize2,encoding2,new DefaultFileRenamePolicy());
 	//Enumeration<String> names = multi.getFileNames();
 	//while(names.hasMoreElements()){
 	//	String name = names.nextElement();
@@ -36,7 +37,7 @@
 	String bbsTitle=multi.getParameter("bbsTitle");//enctype때문에
 	String bbsContent=multi.getParameter("bbsContent");
 	
-	MultipartRequest multi2 = new MultipartRequest(request,directory,maxSize,encoding,new DefaultFileRenamePolicy());
+	
 	String fileName2 = multi.getOriginalFileName("bbsImageVideoFile");
 	String fileRealName2 = multi.getFilesystemName("bbsImageVideoFile");
 %>
@@ -82,7 +83,7 @@
 			if(result == -1){ //데이터베이스 오류가 발생한 경우 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('글쓰기에 실패했습니다')");
+				//script.println("alert('글쓰기에 실패했습니다')");
 				//script.println("history.back()"); //이전 페이지(글쓰기 폼)로 돌아가기 
 				script.println("</script>");
 				script.close();
