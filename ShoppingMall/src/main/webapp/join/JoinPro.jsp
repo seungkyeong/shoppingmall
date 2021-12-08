@@ -1,30 +1,32 @@
+<%@page import="Member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="jsp.member.model.MemberBean" %>
-<%@page import="jsp.member.model.MemberDAO"%>
+<%@page import="Member.MemberBean" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입 처리내용</title>
 <style>
-#wrap{padding-left: 700px;}
+#wrap{
+	padding-top:50px;
+	padding-left: 800px;
+}
 </style>
 </head>
 <body>
+<%@include file="../main/top.jsp" %>
 <%
  // 한글 깨짐을 방지하기 위한 인코딩 처리
  request.setCharacterEncoding("UTF-8"); 
 %>
-<jsp:useBean id="memberBean" class="jsp.member.model.MemberBean" />
+<jsp:useBean id="memberBean" class="Member.MemberBean" />
 <jsp:setProperty property="*" name="memberBean"/>
- 
 <%
-	MemberDAO dao = MemberDAO.getInstance();
-	dao.insertMember(memberBean);
+MemberDAO dao = MemberDAO.getInstance();
+dao.insertMember(memberBean);
 %>
- 
-<%@ include file="../main/top.jsp" %> 
+<!-- 화면출력 -->
 <div id="wrap">
 <br><b><font size="5" color="gray">회원가입 정보를 확인하세요.</font></b>
 <br><br>
@@ -79,7 +81,8 @@
  </tr>
 </table> 
 <br>
-<input type="button" value="메인으로" onclick="javascript:window.location='../main/main.jsp'"> 
+<input type="button" value="확인" onclick="javascript:window.location='../main/main.jsp'"> 
+
 </div>
 </body>
 </html>

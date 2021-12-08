@@ -1,34 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="jsp.member.model.MemberDAO" %>
-<%@page import="jsp.member.model.MemberBean" %>
+<%@page import="Member.MemberDAO" %>
+<%@page import="Member.MemberBean" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>현재 내 정보 출력 화면</title>
 </head>
-<body>
 <style>
- div{padding-left: 800px;}
- body{background-color : LemonChiffon}
+table {
+	border:1px solid;
+	margin-left: auto; 
+	margin-right: auto;
+}
 </style>
+<body>
+<%@ include file="../main/top.jsp" %>	
+
 <script type="text/javascript">
  
  function changeForm(val){
  if(val == "-1"){
- location.href="MainForm.jsp";
+ location.href="../main/main.jsp";
  }else if(val == "0"){
  
-location.href="MainForm.jsp?contentPage=member/view/ModifyFrom.jsp";
+location.href="ModifyForm.jsp?contentPage=member/view/ModifyFrom.jsp";
  }else if(val == "1"){
  
-location.href="MainForm.jsp?contentPage=member/view/DeleteForm.jsp";
+location.href="DeleteForm.jsp?contentPage=member/view/DeleteForm.jsp";
  }
  } 
 </script>
 </body>
 <%
+request.setCharacterEncoding("UTF-8");
  String id = session.getAttribute("sessionID").toString();
  
  // 세션에 저장된 아이디를 가져와서
@@ -36,8 +42,9 @@ location.href="MainForm.jsp?contentPage=member/view/DeleteForm.jsp";
  MemberDAO dao = MemberDAO.getInstance();
  MemberBean memberBean = dao.getUserInfo(id);
  %>
+ <center>
  <br>
- <b><font size="6" color="black">내 정보</font></b>
+ <b><font size="6" color="black" >내 정보</font></b>
  <br><br>
  
  <table>
@@ -101,8 +108,8 @@ location.href="MainForm.jsp?contentPage=member/view/DeleteForm.jsp";
  </tr>
  </table> 
  <br>
- <input type="button" value="회원 정보 수정"
-onclick="changeForm(0)">
+ <input type="button" value="회원 정보 수정" onclick="changeForm(0)">
  <input type="button" value="탈퇴" onclick="changeForm(1)">
- <input type="button" value="확인" onclick="changeForm(-1)">
+ <input type="button" value="확인"onclick="changeForm(-1)">
+ </center>
 </html>

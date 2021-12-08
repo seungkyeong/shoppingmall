@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import util.DatabaseUtil;
@@ -21,7 +22,7 @@ public class reviewBbsDAO {
 			Connection conn = null;
 	        PreparedStatement pstmt = null;
 	        reviewBbs bbs = null;
-			String sql = "select * from bbs where bbsID = ?"; 
+			String sql = "select * from reviewbbs where bbsID = ?"; 
 			try {
 				conn =DatabaseUtil.getConnection();
 				pstmt = conn.prepareStatement(sql);
@@ -109,6 +110,41 @@ public class reviewBbsDAO {
 	            }
 			}
 			return -1; //데이터베이스 오류
-		}    
-
+		}
+		
+		public ArrayList<reviewBbs> getBbsAll(){
+	         ArrayList<reviewBbs> list = new ArrayList<reviewBbs>();
+	         try {
+	            String sql = "select * from reviewbbs order by bbsID DESC";
+	            conn = DatabaseUtil.getConnection();
+	            pstmt = conn.prepareStatement(sql);
+	            rs = pstmt.executeQuery();
+	            
+	            while(rs.next()){
+	               reviewBbs bbs = new reviewBbs();
+	               bbs.setBbsID(rs.getInt("bbsID"));
+	               bbs.setBbsTitle(rs.getString("bbsTitle"));
+	               bbs.setUserID(rs.getString("userID"));
+	               bbs.setBbsDate(rs.getString("bbsDate"));
+	               bbs.setBbsContent(rs.getString("bbsContent"));
+	               bbs.setFileName(rs.getString("fileName"));
+	               bbs.setFileRealName(rs.getString("fileRealName"));
+	               bbs.setFileName2(rs.getString("fileName2"));
+	               bbs.setFileRealName2(rs.getString("fileRealName2"));
+	               bbs.setBbsAvailable(rs.getInt("bbsAvailable"));
+	               list.add(bbs);
+	            }
+	         } catch (Exception e) {
+	            System.out.println("getBbsAll err : " + e);
+	         } finally {
+	            try {
+	               if(rs!=null)rs.close();
+	               if(pstmt!=null)pstmt.close();
+	               if(conn!=null)conn.close();
+	            } catch (Exception e2) {
+	               System.out.println("err : " + e2);
+	            }
+	         }
+	         return list; // 목록 반환
+	      }
 }

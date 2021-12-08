@@ -4,14 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>#화음-아이디찾기</title>
-<link href="../design.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
+</head>
 <style>
-#phone {
-	padding-left: 50px;
+table {
+	position:absolute;
+  	padding : 150px 800px;
+}
+button {
+	width:100%;
 }
 </style>
-</head>
 <script type="text/javascript">
 	function nullCheck() {
 		if(document.idSearch.name.value =="") {
@@ -34,15 +37,16 @@
 		newP.innerHTML="<input type='text' size='40' name='num' placeholder='인증번호'><br><input type='button' style='width:303px' value='아이디 찾기'>";
 		box.appendChild(newP); */
 		
-		const table=document.getElementById('phone');
-		const newRow=table.insertRow();
+		/* const table=document.getElementById('phone');
+		const newRow=table.insertRow(); */
 		
-		//document.idSearch.submit();
+		document.idSearch.submit();
 	}
 </script>
 <body>
-<%@ include file="../main/top.jsp" %>
-<form name="idSearch" action="LoginForm.jsp" method="post">
+<jsp:include page ="../main/top.jsp" flush="false"/>
+<form name="idSearch" action="idSearchActionPhone.jsp" method="post">
+
 	<table id='phone'>
 		<!-- <caption>로그인</caption> -->
 		<tr><td align="center"><h2>아이디 찾기</h2></td></tr>
@@ -52,15 +56,17 @@
 		</label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<label>
-			<input type="radio" name="find" value="email" onclick="location.href='IdSearchMail.jsp'">이메일
+			<input type="radio" name="find" value="email" onclick="location.href='IdSearch2mail.jsp'">이메일
 		</label></td></tr>
 		<tr><td>
 		<input type="text" size="40" name="name" placeholder="이름"></td></tr>
 		<tr><td>
 		<input type="text" size="40" name="birth" placeholder="생년월일 6자리"></td></tr>
 		<tr><td>
-		<input type="tel" size="40" name="tel" placeholder="전화번호 8자리 (010제외)"></td></tr>
+		<input type="tel" size="40" name="tel" placeholder="휴대폰 번호 (010포함,-제외)"></td></tr>
 		<tr><td>	
+		<input type="button" style="width:320px" class="button" value="아이디 찾기" onclick="nullCheck()"></td></tr>
+<!-- 		<tr><td>	
 		<input type="button" style="width:303px" class="button" value="인증요청" onclick="nullCheck()"></td></tr>
 		<script type="text/javascript">
 			/* document.getElementById("button").onclick=function() {
@@ -71,7 +77,7 @@
                     '<input type="text" name="txt"> <input type="button" class="btnRemove" value="Remove"><br>'                    
                 ); 
 			}  */
-		</script>	
+		</script>	 -->
 		
 	</table></form>
 </body>

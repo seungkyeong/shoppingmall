@@ -5,13 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../design.css" rel="stylesheet" type="text/css">
+</head>
 <style>
-#passwordSearch {
-	padding-left: 50px;
+table {
+	position:absolute;
+  	padding : 150px 800px;
+}
+button {
+	width:100%;
 }
 </style>
-</head>
 <script type="text/javascript">
 	function nullCheck() {
 		if(document.passwdSearch.id.value =="") {
@@ -33,9 +36,9 @@
 	}
 </script>
 <body>
-<%@ include file="../main/top.jsp" %>
-<form name="passwdSearch" action="LoginForm.jsp" method="post">
-	<table id="passwordSearch">
+<jsp:include page ="../main/top.jsp" flush="false"/>
+<form name="passwdSearch" action="pwdSearchAction.jsp" method="post">
+	<table>
 		<!-- <caption>로그인</caption> -->
 		<tr><td align="center"><h2>비밀번호 찾기</h2></td></tr>
 		<tr><td>
@@ -45,7 +48,7 @@
 		<tr><td>
 		<input type="email" size="40" name="email" placeholder="email@naver.com"></td></tr>
 		<tr><td>	
-		<input type="button" style="width:303px" value="비밀번호 찾기" onclick="nullCheck()"></td></tr>	
+		<input type="button" style="width:320px" value="비밀번호 찾기" onclick="nullCheck()"></td></tr>	
 	
 	</table></form>
 </body>

@@ -22,14 +22,14 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
 	
-	String directory = application.getRealPath("/productUpload/");
+	String directory = getServletContext().getRealPath("/productUpload/");
 	String encoding = "utf-8"; //변환 형식
 	int maxSize = 5*1024*1024; //사진의 size
 	
 	//파일 업로드를 직접적으로 담당
 	MultipartRequest multi = new MultipartRequest(request, directory, maxSize, encoding, new DefaultFileRenamePolicy());
-	String fileName =  multi.getOriginalFileName("productImage");
-	String fileRealName = multi.getFilesystemName("productImage");
+	String fileName =  multi.getOriginalFileName("productImage"); //사용자가 저장한 파일 이름
+	String fileRealName = multi.getFilesystemName("productImage"); //실제 서버에 저장되는 파일 이름
 	
 	String productID = multi.getParameter("productID"); //enctype 때문.
 	String productName = multi.getParameter("productName");

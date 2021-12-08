@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import util.DatabaseUtil;
@@ -15,26 +16,25 @@ public class noticeBbsDAO {
 		private ResultSet rs; 
 		
 		//게시글 보기: 게시글 번호를 이용하여 게시글을 가져온다.
-		public Bbs getBbs(int bbsID) throws SQLException {
+		public noticeBbs getBbs(int bbsID) throws SQLException {
 			Connection conn = null;
 	        PreparedStatement pstmt = null;
-	        Bbs bbs = null;
-			String sql = "select * from bbs where bbsID = ?"; //해당 상품 찾기 
+	        noticeBbs bbs = null;
+			String sql = "select * from noticebbs where noticebbsID = ?"; //해당 상품 찾기 
 			try {
 				conn =DatabaseUtil.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, bbsID);
 				rs = pstmt.executeQuery();
 				if(rs.next()){
-					bbs = new Bbs();
-					bbs.setBbsID(rs.getInt("bbsID"));
-					bbs.setBbsTitle(rs.getString("bbsTitle"));
-					bbs.setUserID(rs.getString("userID"));
-					bbs.setBbsDate(rs.getString("bbsDate"));
-					bbs.setBbsContent(rs.getString("bbsContent"));
-					bbs.setBbsAvailable(rs.getInt("bbsAvailable"));
-					bbs.setFileName(rs.getString("fileName"));
-					bbs.setFileRealName(rs.getString("fileRealName"));
+					bbs = new noticeBbs();
+					bbs.setNoticeBbsID(rs.getInt("noticeBbsID"));
+					bbs.setNoticeBbsTitle(rs.getString("noticeBbsTitle"));
+					bbs.setNoticeBbsDate(rs.getString("noticeBbsDate"));
+					bbs.setNoticeBbsContent(rs.getString("noticeBbsContent"));
+					bbs.setNoticeBbsAvailable(rs.getInt("noticeBbsAvailable"));
+					bbs.setNoticeBbsFileName(rs.getString("noticeBbsfileName"));
+					bbs.setNoticeBbsFileRealName(rs.getString("noticeBbsfileRealName"));
 				}
 			}catch (SQLException sqle) {
 				throw new RuntimeException(sqle.getMessage());
@@ -100,4 +100,38 @@ public class noticeBbsDAO {
 			}
 			return -1; //데이터베이스 오류
 		}    
+		
+		//공지목록
+	      public ArrayList<noticeBbs> getNoticeAll(){
+	         ArrayList<noticeBbs> list = new ArrayList<noticeBbs>();
+	         try {
+	            String sql = "select * from noticebbs order by noticebbsid desc";
+	            conn = DatabaseUtil.getConnection();
+	            pstmt = conn.prepareStatement(sql);
+	            rs = pstmt.executeQuery();
+	            
+	            while(rs.next()){
+	               noticeBbs notice = new noticeBbs();
+	               notice.setNoticeBbsID(rs.getInt("noticeBbsID"));
+	               notice.setNoticeBbsTitle(rs.getString("noticeBbsTitle"));
+	               notice.setNoticeBbsDate(rs.getString("noticeBbsDate"));
+	               notice.setNoticeBbsContent(rs.getString("noticeBbsContent"));
+	               notice.setNoticeBbsFileName(rs.getString("noticeBbsFileName"));
+	               notice.setNoticeBbsFileRealName(rs.getString("noticeBbsFileRealName"));
+	               notice.setNoticeBbsAvailable(rs.getInt("noticeBbsAvailable"));
+	               list.add(notice);
+	            }
+	         } catch (Exception e) {
+	            System.out.println("getNoticeAll err : " + e);
+	         } finally {
+	            try {
+	               if(rs!=null)rs.close();
+	               if(pstmt!=null)pstmt.close();
+	               if(conn!=null)conn.close();
+	            } catch (Exception e2) {
+	               System.out.println("err : " + e2);
+	            }
+	         }
+	         return list; //목록 반환
+	      }
 }

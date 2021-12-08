@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import jsp.member.model.MemberDAO;
+import Member.MemberDAO;
 import product.Product;
 import util.DatabaseUtil;
 

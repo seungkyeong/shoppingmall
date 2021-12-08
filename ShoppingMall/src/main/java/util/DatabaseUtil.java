@@ -7,9 +7,9 @@ public class DatabaseUtil {
 
 	public static Connection getConnection() {
 		try {
-			String dbURL ="jdbc:mysql://localhost:3306/shopdb?serverTimezone=UTC";
-			String dbID="root";
-			String dbPassword="dmd950112";
+			String dbURL ="jdbc:mysql://3.38.96.95:3306/shopping?serverTimezone=UTC";
+			String dbID="userid";
+			String dbPassword="ghkdma2020";
 			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {

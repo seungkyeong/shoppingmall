@@ -38,7 +38,8 @@ text-align:center;
 		<tr><td class="title" style="height: 80px;"><label>이미지</label></td><td><input type="file" name="noticeBbsImageFile" accept="image/*" onchange="" style="margin:0px 50px;"></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
 		<tr><td colspan="2" class="title">
-				<input type="submit" value="등록하기" style="display:inline;"></td></tr>		
+				<input type="submit" value="등록하기" style="display:inline;">
+		</td></tr>		
 	</table>
 	</form>
 </div>

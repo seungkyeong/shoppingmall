@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="bbs.Bbs" %>    <!--DTO -->
-<%@ page import="bbs.BbsDAO" %>
-<jsp:useBean id="bbsDao" class="bbs.BbsDAO"/>
+<%@ page import="bbs.noticeBbs" %>    <!--DTO -->
+<%@ page import="bbs.noticeBbsDAO" %>
+<jsp:useBean id="bbsDao" class="bbs.noticeBbsDAO"/>
 
 <% request.setCharacterEncoding("utf-8"); %>
     
@@ -44,7 +44,7 @@ text-align:center;
 		userID = (String)session.getAttribute("sessionID");
 	}
 	
-	int bbsID = 0; 
+	int bbsID = 5; 
 	if(request.getParameter("bbsID") != null){
 		bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	}
@@ -57,26 +57,27 @@ text-align:center;
 		script.println("</script>");
 	}
 	
-	Bbs bbs = bbsDao.getBbs(bbsID);
+	noticeBbs bbs = bbsDao.getBbs(bbsID);
 %>
 
 <div class="out">
-	<form action="QnAboardAction.jsp" method="post" enctype="multipart/form-data"> <!-- 파일을 보내려면 form에서 enType="multipart/form-data"를 해야함. -->
 	<input type="hidden" name="userID" value="${sessionScope.sessionID }">
 	<table id="out">
 		<tr><td colspan="2" style="background-color: #f0f0f0; width:800px; height:80px; line-height: 100px; text-align: center; border-bottom: solid 3px #808080;"><h3 >공지사항</h3></td></tr>
-		<tr><td class="title"><label>제목</label></td><td><label style="width: 575px;"><%= bbs.getBbsTitle() %></label></td></tr>
+		<tr><td class="title"><label>제목</label></td><td><label style="width: 575px;"><%= bbs.getNoticeBbsTitle() %></label></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
-		<tr><td class="title"><label>작성일자</label></td><td><label style="width: 575px;"><%= bbs.getBbsDate() %></label></td></tr>
+		<tr><td class="title"><label>작성일자</label></td><td><label style="width: 575px;"><%= bbs.getNoticeBbsDate() %></label></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
-		<tr><td class="title"><label>내용</label></td><td><label><%= bbs.getBbsContent() %></label></td></tr>
+		<tr><td class="title"><label>내용</label></td><td><label><%= bbs.getNoticeBbsContent() %></label></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
-		<tr><td class="title"><label>이미지</label></td><td><img src="../QnAUpload/<%= bbs.getFileRealName() %>" alt="이미지" style="width:200px; height:200px;"></td></tr>
+		<%if (bbs.getNoticeBbsFileRealName()==null) {%>
+      <tr><td class="title"><label>이미지</label></td><td><p>사진없음</p></td></tr>
+      <%}else { %>
+      <tr><td class="title"><label>이미지</label></td><td><img src="../NoticeUpload/<%= bbs.getNoticeBbsFileRealName() %>" alt="이미지" style="width:200px; height:200px;"></td></tr>
+      <%} %>
 		<tr><td colspan="2"><hr></td></tr>
-		<tr><td colspan="2" class="title"><button type="button" onClick="location.href='QnAboardList.jsp'">목록</button>&nbsp;&nbsp;
-				<input type="submit" value="수정" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'">삭제</button></td></tr>		
+		<tr><td colspan="2" class="title"><button type="button" onClick="location.href='NoticeboardList.jsp'">목록</button></td></tr>		
 	</table>
-	</form>
 </div>
 
 <!-- 하단바 include -->

@@ -57,14 +57,14 @@
 		userID = (String)session.getAttribute("sessionID"); //유저아이디에 해당 세션값을 넣어준다.
 	}
 	
-	//if(userID == null) { //로그인이 안된 경우
-	//	PrintWriter script = response.getWriter();
-	//	script.println("<script>");
-	//	script.println("alert('로그인을 하세요.')"); //'로그인 하세요.' 경고창 띄우기
-	//	script.println("location.href='../login/LoginForm.jsp'"); //로그인 화면으로 이동, 로그인jsp
-	//	script.println("</script>");
-	//	script.close();
-	//}else { //로그인한 경우 
+	if(userID == null) { //로그인이 안된 경우
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 하세요.')"); //'로그인 하세요.' 경고창 띄우기
+		script.println("location.href='../login/LoginForm.jsp'"); //로그인 화면으로 이동, 로그인jsp
+		script.println("</script>");
+		script.close();
+	}else { //로그인한 경우 
 		
 		if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null) { //게시글의 제목 or 내용 입력하지 않은 경우 
 			PrintWriter script = response.getWriter();
@@ -83,8 +83,8 @@
 			if(result == -1){ //데이터베이스 오류가 발생한 경우 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				//script.println("alert('글쓰기에 실패했습니다')");
-				//script.println("history.back()"); //이전 페이지(글쓰기 폼)로 돌아가기 
+				script.println("alert('글쓰기에 실패했습니다')");
+				script.println("history.back()"); //이전 페이지(글쓰기 폼)로 돌아가기 
 				script.println("</script>");
 				script.close();
 				return;
@@ -92,13 +92,13 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('글쓰기에 성공했습니다')");
-				script.println("location.href='QnAboardList.jsp'"); //게시판 눌렀을 때(목록있는 곳)의 위치로 이동 
+				script.println("location.href='ReviewboardList.jsp'"); //게시판 눌렀을 때(목록있는 곳)의 위치로 이동 
 				//script.println("history.back()"); //이전 페이지(글쓰기 폼)로 돌아가기 
 				script.println("</script>");
 				script.close();
 			}
 		}
-	//}
+	}
 %>
 </body>
 </html>

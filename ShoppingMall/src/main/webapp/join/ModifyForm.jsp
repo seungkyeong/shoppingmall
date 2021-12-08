@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="jsp.member.model.MemberDAO" %>
-<%@page import="jsp.member.model.MemberBean" %>
+<%@page import="Member.MemberDAO" %>
+<%@page import="Member.MemberBean" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정화면</title>
 <%
- String id = session.getAttribute("sessionID").toString();
+request.setCharacterEncoding("UTF-8");
+String id = session.getAttribute("sessionID").toString();
  
- MemberDAO dao = MemberDAO.getInstance();
- MemberBean memberBean = dao.getUserInfo(id);
- %>
- 
- <style>
- div{padding-left: 800px;}
-</style>
+MemberDAO dao = MemberDAO.getInstance();
+MemberBean memberBean = dao.getUserInfo(id);
+%>
  
  <script>
  function init(){
@@ -40,14 +37,22 @@
  	}
  } 
  </script>
-
+<style>
+table {
+	border:1px solid;
+	margin-left: auto; 
+	margin-right: auto;
+}
+</style>
 </head>
+<%@ include file="../main/top.jsp" %>
 <body onload="init()">
+<center>
 <br>
  <b><font size="6" color="black" >회원정보 수정</font></b>
  <br><br>
 <form method="post"
-action="MainForm.jsp?contentPage=member/pro/ModifyPro.jsp"
+action="ModifyPro.jsp?contentPage=member/pro/ModifyPro.jsp"
  name="userInfo" onsubmit="return checkValue()">
 <table>
  <tr>
@@ -123,9 +128,9 @@ value="<%=memberBean.getPhone() %>"></td>
  </table> 
  <br>
  <input type="button" value="취소"
-onclick="javascript:window.location='MainForm.jsp'">
+onclick="history.back()">
  <input type="submit" value="수정"/> 
  </form>
-
+</center>
 </body>
 </html>

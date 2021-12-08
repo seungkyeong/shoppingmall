@@ -2,15 +2,14 @@
 package bbs;
 
 public class Bbs {
-	//한명의 회원정보를 담는 userBbs 클래스.
 	private int bbsID; //게시글 id
 	private String bbsTitle; //제목
 	private String userID; //아이디
 	private String bbsDate; //작성 날짜
 	private String bbsContent; //내용
 	private int bbsAvailable;
-	String fileName;
-	String fileRealName; //실제로 서버에 저장되는 이름
+	private String fileName;
+	private String fileRealName; //실제로 서버에 저장되는 이름
 	
 	public int getBbsID() {
 		return bbsID;

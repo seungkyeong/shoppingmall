@@ -47,7 +47,7 @@ text-align:center;
 		<tr><td class="title" style="height: 80px;"><label>이미지</label></td><td><input type="file" name="bbsImageFile" accept="image/*" onchange="" style="margin:0px 50px;"></td></tr>
 		<tr><td colspan="2"><hr></td></tr>
 		<tr><td colspan="2" class="title">
-				<input type="submit" value="등록" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="location.href='boardBack.jsp'">취소</button></td></tr>		
+				<input type="submit" value="등록" style="display:inline;">&nbsp;&nbsp;<button type="button" onClick="history.back()">취소</button></td></tr>		
 	</table>
 	</form>
 </div>

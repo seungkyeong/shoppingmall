@@ -17,19 +17,18 @@ import util.DatabaseUtil;
 import java.sql.DriverManager;
 
 public class ProductDAO {
-	private Connection conn; //connection은 db에 접근하게 해주는 객체
-	private ResultSet rs; //ResultSet는 쿼리문을 실행한 정보를 가져오는 클래스
+	private Connection conn; 
+	private ResultSet rs; 
 	private PreparedStatement pstmt;
-	private DataSource ds;
+	//private DataSource ds;
 	
 	//mysql 처리부분
 	public ProductDAO() {		
 		//생성자 만들기
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/product?serverTimezone=UTC";
-			
-			String dbID="root";
-			String dbPassword = "dmd950112";
+			String dbURL ="jdbc:mysql://3.38.96.95:3306/shopping?serverTimezone=UTC";
+			String dbID="userid";
+			String dbPassword="ghkdma2020";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}catch (Exception e) {
@@ -57,10 +56,10 @@ public class ProductDAO {
 	public int updateProduct(Product p) {
 		int re = -1;
 		
-		String sql = "update product set productID=?, productName=?, productStock=?, productPrice=?, fileName=?, fileRealName=?, productInfo=?";
+		String sql = "update producttbl set productID=?, productName=?, productStock=?, productPrice=?, fileName=?, fileRealName=?, productInfo=?";
 		
 		try {
-			conn = ds.getConnection();
+			conn = DatabaseUtil.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, p.getProductID());
 			pstmt.setString(2, p.getProductName());
@@ -78,14 +77,14 @@ public class ProductDAO {
 		return re;
 	}
 	
-	//상품 삭제 
+	//상품 삭제
 	public int deleteProduct(String productID) {
 		int re = -1;
 		
-		String sql = "delete product where productID=?";
+		String sql = "delete producttbl where productID=?";
 		
 		try {
-			conn = ds.getConnection();
+			conn = DatabaseUtil.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productID);
 			
@@ -99,29 +98,27 @@ public class ProductDAO {
 	
 	//productID 상품 번호 가져오는 함수
 	public int getProductID() {
-		String SQL = "SELECT productID FROM PRODUCT ORDER BY productID DESC";
+		String SQL = "SELECT productID FROM PRODUCTTBL ORDER BY productID DESC";
 		try {
-			conn =DatabaseUtil.getConnection();
-			pstmt = conn.prepareStatement(SQL);
+			conn = DatabaseUtil.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; //첫 번째 게시물인 경우
+			return 1; //첫번째 게시물인 경우
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1; //데이터베이스 오류
 	}
 	
-	//상품 상세보기, 상품번호를 이용하여 상품을 가져오는 함수 
-	public Product getProduct(String productID) throws SQLException {
-		Connection conn = null;
-        PreparedStatement pstmt = null;
+	//상품 상세보기, 상품번호를 이용하여 상품으 가져오는 함수
+	public Product getProduct(String productID){
 		Product product = null;
-		String sql = "select * from product where productID = ?"; //해당 상품 찾기 
+		String sql = "select * from producttbl where productID = ?"; //해당 상품 찾기
 		try {
-			conn =DatabaseUtil.getConnection();
+			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productID);
 			rs = pstmt.executeQuery();
@@ -135,41 +132,65 @@ public class ProductDAO {
 				product.setFileRealName(rs.getString("fileRealName"));
 				product.setProductInfo(rs.getString("productInfo"));
 			}
-		}catch (SQLException sqle) {
-			throw new RuntimeException(sqle.getMessage());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("getProduct err : ");
-		}finally {
+		} finally {
 			try {
 				if(rs!=null)rs.close();
 				if(pstmt!=null)pstmt.close();
 				if(conn!=null)conn.close();
-			}catch (Exception e2) {
+			} catch (Exception e2) {
 				System.out.println("err : " + e2);
 			}
 		}
 		return product;
 	}
-	
-	
-//	public ProductManager() {
-//		try {
-//			Context context = new InitialContext(); //JNDI를 사용하기 위해 
-//			ds = (DataSource)context.lookup("java:comp/env/jdbc/orcl"); //??
-//		} catch (Exception e) {
-//			System.out.println("connect err : " + e);
-//		}
-//	}
+
 	
 	//전체 상품 목록 출력
 	public ArrayList<Product> getProductAll(){
 		ArrayList<Product> list = new ArrayList<Product>();
 		try {
-			String sql = "select * from product";
-			conn = ds.getConnection();
+			String sql = "select * from producttbl";
+			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
+			while(rs.next()){
+				Product product = new Product();
+				product.setProductID(rs.getString("productID"));
+				product.setProductName(rs.getString("productName"));
+				product.setProductStock(rs.getInt("productStock"));
+				product.setProductPrice(rs.getInt("productPrice"));
+				product.setFileName(rs.getString("fileName"));
+				product.setFileRealName(rs.getString("fileRealName"));
+				product.setProductInfo(rs.getString("productInfo"));
+				list.add(product);
+			}
+		} catch (Exception e) {
+			System.out.println("getProductAll err : " + e);
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (Exception e2) {
+				System.out.println("err : " + e2);
+			}
+		}
+		return list; //상품 목록 반환
+	}
+	
+	//카테고리 가져오기 
+	public ArrayList<Product> getCategory(int categoryID){
+		ArrayList<Product> list = new ArrayList<Product>();
+		try {
+			String sql = "select * from producttbl where categoryID= ?";
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, categoryID);
+			rs = pstmt.executeQuery();
+				
 			while(rs.next()){
 				Product product = new Product();
 				product.setProductID(rs.getString("productID"));
@@ -201,7 +222,7 @@ public class ProductDAO {
         PreparedStatement pstmt = null;
 		int re = -1;
 		try {
-			String sql = "insert into product(productID, productName, productStock, productPrice, fileName, fileRealName, productInfo) values(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into producttbl(productID, productName, productStock, productPrice, fileName, fileRealName, productInfo) values(?, ?, ?, ?, ?, ?, ?)";
 			conn =DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
 		
@@ -220,7 +241,7 @@ public class ProductDAO {
 		}catch (Exception e) {
 			System.out.println("err : " + e.getMessage());
 		}finally {
-            // Connection, PreparedStatement를 닫는다.
+            // Connection, PreparedStatement를 닫는다
             try{
             	//close(conn, pstmt, null);
             	if ( pstmt != null ){ pstmt.close(); pstmt=null; }
