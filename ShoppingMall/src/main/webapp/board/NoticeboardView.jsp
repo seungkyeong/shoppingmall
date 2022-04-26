@@ -27,8 +27,10 @@ margin:0 auto;
 position: relative;
 }
 .title{
-width: 120px; 
 text-align:center;
+}
+label{
+width:100px;
 }
 </style>
 </head>

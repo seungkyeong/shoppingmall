@@ -8,6 +8,8 @@
 </head>
 <style>
 table {
+	margin-top: 150px;
+	margin-left: 0 auto;
 	border:1px solid;
 	margin-left: auto; 
 	margin-right: auto;
@@ -41,8 +43,7 @@ onsubmit="return checkValue()">
  </table>
  
 <br>
-<input type="button" value="취소" onclick="javascript:window.location='../main/main.jsp'">
-<input type="submit" value="탈퇴" />
+<input type="button" value="취소" onclick="javascript:window.location='../main/main.jsp'"><input type="submit" value="탈퇴" />
 </form>
 </div> 
 </center>
